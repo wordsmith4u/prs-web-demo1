@@ -60,11 +60,4 @@ public class LineItem {
 		this.quantity = quantity;
 	}
 
-	// this method returns lineItem total
-	public double getLineTotal() {
-		double lineTotal = product.getPrice() * quantity;
-		return lineTotal;
-
-	}
-
 }
