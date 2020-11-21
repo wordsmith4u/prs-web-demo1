@@ -55,11 +55,11 @@ public class LineItemController {
 	}
 
 	private void recalculateLineItemValue(LineItem l) {
-		// get all line items for this user
+		// get all line items for request
 		// loop through them and sum a new total
 		double newTotal = 0.0;
-		List<LineItem> li = lineItemRepo.findByRequestId(l.getRequest().getId());
-		for (LineItem line : li) {
+		List<LineItem> lines = lineItemRepo.findByRequestId(l.getRequest().getId());
+		for (LineItem line : lines) {
 			Product p = line.getProduct();
 			newTotal += p.getPrice()*line.getQuantity();
 		}
