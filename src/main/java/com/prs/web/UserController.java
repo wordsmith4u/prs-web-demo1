@@ -73,15 +73,15 @@ public class UserController {
 	}
 
 	// login via POST
-	@PostMapping("/login")
-	public Optional<User> login(@RequestBody User u) {
-		System.out.println("user = " + u.getUserName()+", "+u.getPassword());
-		Optional<User> user = userRepo.findByUserNameAndPassword(u.getUserName(), u.getPassword());
-		if (user.isPresent()) {
+		@PostMapping("/login")
+		public Optional<User> login(@RequestBody User u) {
+			//System.out.println("user = " + u.getUsername()+", "+u.getPassword());
+			Optional<User> user = userRepo.findByUserNameAndPassword(u.getUserName(), u.getPassword());
+			if (user.isPresent()) {
+				return user;
+			} else {
+				System.out.println("Error - user not found");
+			}
 			return user;
-		} else {
-			System.out.println("Error - user not found");
 		}
-		return user;
 	}
-}
