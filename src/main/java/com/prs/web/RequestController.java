@@ -75,7 +75,7 @@ public class RequestController {
 		return r.get();
 	}
 
-	// request review
+	// submit for review
 	@PutMapping("/submit-review")
 	public Request submitForReview(@RequestBody Request r) {
 
