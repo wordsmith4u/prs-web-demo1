@@ -1,15 +1,16 @@
 package com.prs.db;
 
 
-import java.util.Optional;
+import java.util.List;
+
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.prs.business.Request;
-import com.prs.business.User;
+
 
 public interface RequestRepo extends JpaRepository<Request, Integer> {
 	
-	Optional<Request> findByUserNotAndStatus(User user, String status);
+	public List<Request> findByUserIdNotAndStatus(int id, String status);
 
 }

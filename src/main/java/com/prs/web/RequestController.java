@@ -8,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.prs.business.Request;
-import com.prs.business.User;
 import com.prs.db.RequestRepo;
-import com.prs.db.UserRepo;
+
 
 @CrossOrigin
 @RestController
@@ -19,8 +18,7 @@ public class RequestController {
 
 	@Autowired
 	private RequestRepo requestRepo;
-	@Autowired
-	private UserRepo userRepo;
+	
 
 	// GET ALL requests
 	@GetMapping("/")
@@ -36,10 +34,8 @@ public class RequestController {
 
 	// GET request review
 	@GetMapping("/list-review/{id}")
-	public Optional<Request> reviewRequest(@PathVariable int id) {
-		User u = userRepo.findById(id).get();
-		return requestRepo.findByUserNotAndStatus(u, "Review");
-
+	public List<Request> getAllReviewRequests(@PathVariable int id) {
+		return requestRepo.findByUserIdNotAndStatus(id, "Review");		
 	}
 
 	// Add a request
@@ -86,7 +82,7 @@ public class RequestController {
 		}
 
 		r.setSubmittedDate(LocalDateTime.now());
-
+		r = requestRepo.save(r);
 		return r;
 
 	}
